@@ -33,6 +33,10 @@ const EllucianExperienceStudentGpaCard = (props) => {
         periodBased: []
     });
     const [selectedAcademicLevelIndex, setSelectedAcademicLevelIndex] = React.useState(0);
+    const ref = React.useRef(null);
+    React.useEffect(() => {
+      console.log('width', ref);
+    }, [ref.current]);
 
     React.useEffect(() => {
         (async () => {
@@ -52,7 +56,7 @@ const EllucianExperienceStudentGpaCard = (props) => {
             } = fetchedResult;
             const sortedPeriodBased = periodBased.sort((a, b) => (a.academicPeriod16.code > b.academicPeriod16.code ? 1 : -1));
             setSelectedAcademicLevelIndex(cumulative.findIndex(item => (item.academicLevel6.code = sortedPeriodBased.slice(-1)[0]?.academicLevel6.code)));
-            setStudentGpaData({ cumulative: cumulative, periodBased: sortedPeriodBased });
+            setStudentGpaData({ cumulative: cumulative.filter(item => (item.academicLevel6.code==sortedPeriodBased.slice(-1)[0]?.academicLevel6.code)), periodBased: sortedPeriodBased.filter(item => (item.academicLevel6.code==sortedPeriodBased.slice(-1)[0]?.academicLevel6.code)) });
             setLoadingStatus(false);
           } catch (error) {
             setErrorMessage({
@@ -83,7 +87,7 @@ const EllucianExperienceStudentGpaCard = (props) => {
     })
 
     return (
-        <div className={classes.card} style={{height:120}}>
+        <div className={classes.card} style={{height:120}} ref={ref}>
             <ResponsiveContainer width="100%" height="100%">
                 <PieChart width={70} height={70}>
                 <Pie
@@ -101,6 +105,7 @@ const EllucianExperienceStudentGpaCard = (props) => {
                 />
                 </PieChart>
             </ResponsiveContainer>
+            <ResponsiveContainer height={100}>
             <ComposedChart
             width={400}
             height={100}
@@ -116,11 +121,12 @@ const EllucianExperienceStudentGpaCard = (props) => {
             <XAxis hide={true} dataKey="name" />
             <YAxis hide={true}/>
             <YAxis yAxisId="gpa" domain={[0, 4]} hide={true}/>
-            <Tooltip />
+            <Tooltip isAnimationActive={false}/>
             <Area type="monotone" dataKey="earnedCredits" stackId="1" stroke="#ffc658" fill="#ffc658" yAxisId="0" />
             <Area type="monotone" dataKey="missedCredits" stackId="1" stroke="#8884d8" fill="#8884d8" yAxisId="0" />
             <Line type="monotone" dataKey="gpa" stroke="#44AACC" yAxisId="gpa" />
             </ComposedChart>
+            </ResponsiveContainer>
             <Button onClick={() => {window.open(buttonUrl, '_blank').focus();}} className={classes.button}>{buttonLabel}</Button>
         </div>
 
