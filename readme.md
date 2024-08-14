@@ -15,7 +15,11 @@ Data is pulled from Ethos API GraphQL endpoint.
 
 ## Prerequisites
 
-Ellucian Experience API user should have access to *academic-periods*, *persons* and *student-grade-point-averages* resources. 
+Ellucian Experience API user should have access to the following resources:
+* *academic-periods*
+* *students*
+* *persons*
+* *student-grade-point-averages* 
 
 ## Quick Start
 
