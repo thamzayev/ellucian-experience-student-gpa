@@ -1,6 +1,6 @@
 {
   "name": "ellucian-experience-student-gpa",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "This extension shows student GPA and credit information",
   "main": "index.js",
   "license": "MIT",
