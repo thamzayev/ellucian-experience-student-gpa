@@ -4,6 +4,7 @@ import { Button } from '@ellucian/react-design-system/core';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { ComposedChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Pie, PieChart, Line } from 'recharts';
+import CustomTooltip from '../components/CustomTooltip';
 import mapGpaToColor from '../helpers/map-gpa-to-color';
 import gpaGauge from '../components/gpa-gauge';
 
@@ -121,7 +122,7 @@ const EllucianExperienceStudentGpaCard = (props) => {
             <XAxis hide={true} dataKey="name" />
             <YAxis hide={true}/>
             <YAxis yAxisId="gpa" domain={[0, 4]} hide={true}/>
-            <Tooltip isAnimationActive={false}/>
+            <Tooltip content={<CustomTooltip />} isAnimationActive={false}/>
             <Area type="monotone" dataKey="earnedCredits" stackId="1" stroke="#ffc658" fill="#ffc658" yAxisId="0" />
             <Area type="monotone" dataKey="missedCredits" stackId="1" stroke="#8884d8" fill="#8884d8" yAxisId="0" />
             <Line type="monotone" dataKey="gpa" stroke="#44AACC" yAxisId="gpa" />
