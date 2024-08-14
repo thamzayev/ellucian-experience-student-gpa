@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const CustomTooltip = ({ active, payload, label }) => {
     if (active && payload && payload.length) {
@@ -13,6 +14,15 @@ const CustomTooltip = ({ active, payload, label }) => {
     }
 
     return null;
+};
+
+CustomTooltip.propTypes = {
+    active: PropTypes.bool,
+    payload: PropTypes.arrayOf(PropTypes.shape({
+        name: PropTypes.string,
+        value: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+    })),
+    label: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
 };
 
 export default CustomTooltip;
