@@ -122,7 +122,7 @@ const EllucianExperienceStudentGpaCard = (props) => {
             <XAxis hide={true} dataKey="name" />
             <YAxis hide={true}/>
             <YAxis yAxisId="gpa" domain={[0, 4]} hide={true}/>
-            <Tooltip content={<CustomTooltip />} isAnimationActive={false}/>
+            <Tooltip content={<CustomTooltip />} isAnimationActive={false} />
             <Area type="monotone" dataKey="earnedCredits" stackId="1" stroke="#ffc658" fill="#ffc658" yAxisId="0" />
             <Area type="monotone" dataKey="missedCredits" stackId="1" stroke="#8884d8" fill="#8884d8" yAxisId="0" />
             <Line type="monotone" dataKey="gpa" stroke="#44AACC" yAxisId="gpa" />
